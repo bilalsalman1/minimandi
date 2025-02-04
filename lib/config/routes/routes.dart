@@ -3,10 +3,11 @@
 import 'package:get/get.dart';
 import 'package:minimandi/view/screens/accepted/accepted_screen.dart';
 import 'package:minimandi/view/screens/bottomnavigation/bottomnavigation_screen.dart';
+import 'package:minimandi/view/screens/filter/filter.dart';
 import 'package:minimandi/view/screens/location/location_screen.dart';
 import 'package:minimandi/view/screens/login/login_screen.dart';
 import 'package:minimandi/view/screens/number/number.dart';
-import 'package:minimandi/view/screens/onboarding/onboarding_screen.dart';
+import 'package:minimandi/view/screens/launch/onboarding_screen.dart';
 import 'package:minimandi/view/screens/signin/signin_screen.dart';
 import 'package:minimandi/view/screens/signup/signup_screen.dart';
 import 'package:minimandi/view/screens/verification/verification_screen.dart';
@@ -54,6 +55,10 @@ class AppRoutes {
       name: AppLinks.accepted,
       page: () => AcceptedScreen(),
     ),
+    GetPage(
+      name: AppLinks.filter,
+      page: () => Filter(),
+    ),
   ];
 }
 
@@ -68,4 +73,5 @@ class AppLinks {
   static const signUp = '/signUp';
   static const bottom = '/bottom';
   static const accepted = '/accepted';
+  static const filter = '/filter';
 }

@@ -18,14 +18,14 @@ class AccountWidget extends StatelessWidget {
       title: CustomText(
         text: 'User',
         color: kBlueColor,
-        size: f(context, 18),
-        weight: FontWeight.bold,
+        size: 20,
+        weight: FontWeight.w600,
       ),
       subtitle: CustomText(
         text: 'example123@example.com',
         color: kGreyColor,
-        size: f(context, 16),
-        weight: FontWeight.w500,
+        size: 16,
+        weight: FontWeight.w400,
       ),
       trailing: Icon(
         Icons.edit,
@@ -37,13 +37,13 @@ class AccountWidget extends StatelessWidget {
 }
 
 class AccountTile extends StatelessWidget {
-  final IconData icons;
+  final Widget icon;
   final CustomText text;
   final VoidCallback ontap;
 
   const AccountTile({
     super.key,
-    required this.icons,
+    required this.icon,
     required this.ontap,
     required this.text,
   });
@@ -65,12 +65,12 @@ class AccountTile extends StatelessWidget {
             child: ListTile(
               contentPadding: all(context, 5),
               dense: true,
-              leading: Icon(
-                icons,
-                size: f(context, 22),
-                color: kblueColor,
-              ),
+              leading: icon,
               title: text,
+              titleTextStyle: TextStyle(
+                  fontSize: f(context, 16),
+                  fontWeight: FontWeight.w500,
+                  color: kblueColor),
               trailing: Icon(
                 Icons.arrow_forward_ios,
                 size: f(context, 18),

@@ -3,13 +3,14 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:minimandi/config/routes/routes.dart';
+import 'package:minimandi/view/binding/binding.dart';
 import 'package:minimandi/view/screens/launch/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
     DevicePreview(
-      builder: (context) => MyApp(),
+      builder: (ctx) => MyApp(),
     ),
   );
 }
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+        initialBinding: AppBinding(),
         debugShowCheckedModeBanner: false,
         locale: Locale('en', 'US'),
         theme: ThemeData.light(),

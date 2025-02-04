@@ -42,7 +42,7 @@ Widget _buildBody() {
     ),
     child: Center(
         child: CommonImageView(
-      imagePath: Assets.mainlogo,
+      imagePath: Assets.imagesMainlogo,
       width: 150,
       height: 150,
     )),

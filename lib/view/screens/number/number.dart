@@ -42,7 +42,7 @@ Widget _buildHeader(
   return Stack(
     children: [
       CommonImageView(
-        imagePath: Assets.background,
+        imagePath: Assets.imagesBackground,
         height: h(context, 250),
         width: w(context, double.infinity),
       ),
@@ -65,13 +65,13 @@ Widget _buildHeader(
                 },
                 icon: Icon(Icons.arrow_back_ios)),
             SizedBox(
-              height: h(context, 40),
+              height: h(context, 55),
             ),
             CustomText(
               text: 'Enter your mobile number',
               color: kPrimaryColor,
-              size: f(context, 20),
-              weight: FontWeight.bold,
+              size: 24,
+              weight: FontWeight.w500,
             ),
             SizedBox(
               height: h(context, 25),
@@ -79,7 +79,7 @@ Widget _buildHeader(
             CustomText(
               text: 'Mobile Number',
               color: kGreyColor,
-              size: f(context, 13),
+              size: 13,
               weight: FontWeight.w300,
             ),
             Row(

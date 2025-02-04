@@ -47,7 +47,7 @@ class CheckoutWidget extends StatelessWidget {
               ),
               Icon(
                 icon,
-                size: f(context, 20),
+                size: 20,
                 color: kPrimaryColor,
               ),
             ],

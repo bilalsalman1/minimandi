@@ -71,6 +71,7 @@ class CustomButton2 extends StatelessWidget {
   final double height;
   final VoidCallback onTap;
   final IconData? icons;
+
   const CustomButton2({
     Key? key,
     this.icons,
@@ -108,20 +109,24 @@ class CustomButton2 extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              icons,
-              color: iconColor,
-              size: iconSize,
-            ),
-            SizedBox(
-              width: w(context, 11),
-            ),
-            CustomText(
-              text: text,
-              size: textSize,
-              weight: fontWeight,
-              color: textColor,
-              paddingLeft: 2,
+            if (icons != null) ...[
+              Icon(
+                icons,
+                color: iconColor,
+                size: iconSize,
+              ),
+              SizedBox(
+                width: w(context, 11),
+              ),
+            ],
+            Center(
+              child: CustomText(
+                text: text,
+                size: textSize,
+                weight: fontWeight,
+                color: textColor,
+                paddingLeft: 0,
+              ),
             ),
           ],
         ),
@@ -140,7 +145,7 @@ class CustomButton3 extends StatelessWidget {
   final double width;
   final double height;
   final VoidCallback onTap;
-  final String? imagePath; // Make imagePath nullable
+  final String? imagePath;
 
   const CustomButton3({
     Key? key,
@@ -153,7 +158,7 @@ class CustomButton3 extends StatelessWidget {
     this.width = double.infinity,
     this.height = 51.0,
     required this.onTap,
-    this.imagePath, // Add imagePath as optional
+    this.imagePath,
   }) : super(key: key);
 
   @override
@@ -169,6 +174,14 @@ class CustomButton3 extends StatelessWidget {
         width: w(context, width),
         height: h(context, height),
         decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: kPrimaryColor.withOpacity(0.1),
+              spreadRadius: 2,
+              blurRadius: 6,
+              offset: const Offset(0, 8),
+            ),
+          ],
           borderRadius: BorderRadius.circular(h(context, borderRadius)),
           color: backgroundColor,
         ),
@@ -177,12 +190,12 @@ class CustomButton3 extends StatelessWidget {
           children: [
             if (imagePath != null)
               Padding(
-                padding: only(context, right: 10),
+                padding: only(context, right: 20),
                 child: CommonImageView(
                   imagePath: imagePath!,
                   fit: BoxFit.contain,
-                  height: 24,
-                  width: 24,
+                  height: h(context, 30),
+                  width: w(context, 30),
                 ),
               ),
             CustomText(

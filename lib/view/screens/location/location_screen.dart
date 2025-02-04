@@ -28,7 +28,7 @@ Widget _buildBody(BuildContext context) {
   return Stack(
     children: [
       CommonImageView(
-        imagePath: Assets.background,
+        imagePath: Assets.imagesBackground,
         height: h(context, 250),
         width: w(context, double.infinity),
       ),
@@ -45,7 +45,7 @@ Widget _buildBody(BuildContext context) {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: only(context, left: 20, top: 35, right: 30),
+            padding: only(context, left: 20, top: 35, right: 0),
             child: IconButton(
                 onPressed: () {
                   Get.back();
@@ -53,24 +53,14 @@ Widget _buildBody(BuildContext context) {
                 icon: Icon(Icons.arrow_back_ios)),
           ),
           SizedBox(
-            height: h(context, 20),
+            height: h(context, 45),
           ),
           Center(
             child: CommonImageView(
-              imagePath: Assets.locator,
-              height: h(context, 140),
-              width: w(context, 220),
-            ),
-          ),
-          SizedBox(
-            height: h(context, 25),
-          ),
-          Center(
-            child: CustomText(
-              text: 'Select your location',
-              color: kPrimaryColor,
-              size: f(context, 20),
-              weight: FontWeight.bold,
+              imagePath: Assets.imagesLocator,
+              height: 170.69,
+              width: 224.69,
+              fit: BoxFit.contain,
             ),
           ),
           SizedBox(
@@ -78,11 +68,22 @@ Widget _buildBody(BuildContext context) {
           ),
           Center(
             child: CustomText(
+              text: 'Select your location',
+              color: kPrimaryColor,
+              size: 24,
+              weight: FontWeight.w500,
+            ),
+          ),
+          SizedBox(
+            height: h(context, 6),
+          ),
+          Center(
+            child: CustomText(
               textAlign: TextAlign.center,
               text:
                   'Switch on your location to stay in tune with\nwhat’s happening in your area',
               color: kGreyColor,
-              size: f(context, 13),
+              size: 14,
               weight: FontWeight.w300,
             ),
           ),
@@ -95,13 +96,21 @@ Widget _buildBody(BuildContext context) {
               textAlign: TextAlign.center,
               text: 'Your Zone',
               color: kGreyColor,
-              size: f(context, 13),
-              weight: FontWeight.w300,
+              size: 15,
+              weight: FontWeight.w400,
             ),
           ),
           Padding(
-            padding: only(context, left: 20, right: 20),
-            child: CustomTextField(keyboardType: TextInputType.streetAddress),
+            padding: only(context, left: 20, right: 20, top: 6),
+            child: CustomTextField(
+              keyboardType: TextInputType.streetAddress,
+              icon: ImageIcon(
+                AssetImage(
+                  Assets.iconsDrop,
+                ),
+                color: kGreyColor,
+              ),
+            ),
           ),
           SizedBox(
             height: h(context, 20),
@@ -115,30 +124,39 @@ Widget _buildBody(BuildContext context) {
               textAlign: TextAlign.center,
               text: 'Your Area',
               color: kGreyColor,
-              size: f(context, 13),
-              weight: FontWeight.w300,
+              size: 15,
+              weight: FontWeight.w400,
             ),
           ),
           Padding(
-            padding: only(context, left: 20, right: 20),
+            padding: only(context, left: 20, right: 20, top: 6),
             child: CustomTextField(
-                hintText: 'Type your area',
-                keyboardType: TextInputType.streetAddress),
-          ),
-          SizedBox(
-            height: h(context, 100),
-          ),
-          CustomButton(
-            width: 400,
-            height: 60,
-            buttonText: 'Submit',
-            onTap: () {
-              Get.toNamed(AppLinks.login);
-            },
-            backgroundColor: kBlueColor,
-            textSize: f(context, 18),
+              hintText: 'Type your area',
+              keyboardType: TextInputType.streetAddress,
+              icon: ImageIcon(
+                AssetImage(
+                  Assets.iconsDrop,
+                ),
+                color: kGreyColor,
+              ),
+            ),
           ),
         ],
+      ),
+      Positioned(
+        bottom: 20,
+        child: CustomButton(
+          borderRadius: 20.0,
+          width: 364,
+          height: 67,
+          buttonText: 'Submit',
+          onTap: () {
+            Get.toNamed(AppLinks.login);
+          },
+          fontWeight: FontWeight.w500,
+          backgroundColor: kBlueColor,
+          textSize: 18,
+        ),
       ),
     ],
   );

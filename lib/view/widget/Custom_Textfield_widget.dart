@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
+import 'package:minimandi/constants/app_images.dart';
 import '../../constants/app_colors.dart';
 // import '../../constants/app_images.dart';
 import '../../constants/app_styling.dart';
@@ -14,6 +15,8 @@ class CustomTextField extends StatefulWidget {
   final String? labelText;
   final TextInputType keyboardType;
   final bool isIcon;
+  final ImageIcon? icon;
+  final double? size;
 
   const CustomTextField({
     Key? key,
@@ -23,6 +26,8 @@ class CustomTextField extends StatefulWidget {
     this.hintText,
     this.labelText,
     this.isIcon = true,
+    this.icon,
+    this.size,
   }) : super(key: key);
 
   @override
@@ -35,6 +40,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
     return Container(
       width: w(context, 400),
       height: h(context, 48),
+
       // decoration: BoxDecoration(
       //   borderRadius: BorderRadius.circular(h(context, 8)),
       //   border: Border.all(
@@ -56,19 +62,17 @@ class _CustomTextFieldState extends State<CustomTextField> {
           controller: widget.controller,
           onChanged: widget.onChanged,
           style: TextStyle(
-            color: kPrimaryColor,
-            fontSize: f(context, 15),
-          ),
+              color: kPrimaryColor,
+              fontSize: f(context, widget.size ?? 18),
+              fontWeight: FontWeight.w400),
           decoration: InputDecoration(
-            contentPadding: EdgeInsets.symmetric(
-              vertical: 3,
-            ),
             enabledBorder: UnderlineInputBorder(
               borderSide: BorderSide(color: kGreyColor),
             ),
             focusedBorder: UnderlineInputBorder(
               borderSide: BorderSide(color: kGreyColor),
             ),
+
             border: InputBorder.none,
             labelText: widget.labelText,
             labelStyle: TextStyle(
@@ -78,20 +82,19 @@ class _CustomTextFieldState extends State<CustomTextField> {
             ),
             hintText: widget.hintText,
             hintStyle: TextStyle(
-              color: kPrimaryColor.withOpacity(0.5),
-              fontSize: f(context, 15),
-              fontWeight: FontWeight.w500,
-            ),
+                color: kPrimaryColor.withOpacity(0.5),
+                fontSize: f(context, widget.size ?? 18),
+                fontWeight: FontWeight.w400),
+            // suffixIcon: widget.isIcon
+            //     ? Padding(
+            //         padding: all(context, 12),
+            //         child: ImageIcon(AssetImage(Assets.iconsShop)),
+            //       )
+            //     : null,
             suffixIcon: widget.isIcon
                 ? Padding(
-                    padding: all(context, 12),
-
-                    // child: CommonImageView(
-                    //   imagePath: Assets.imagesCalendar,
-                    //   fit: BoxFit.contain,
-                    //   height: 20,
-                    //   width: 20,
-                    // ),
+                    padding: only(context, left: 12, bottom: 12),
+                    child: widget.icon,
                   )
                 : null,
           ),
@@ -186,13 +189,14 @@ class CustomTextField3 extends StatefulWidget {
   final String hintText;
   final bool isIcon;
   final int maxLines;
-
+  final double? size;
   const CustomTextField3(
       {Key? key,
       this.onChanged,
       this.controller,
       required this.hintText,
       this.isIcon = false,
+      this.size,
       this.maxLines = 1})
       : super(key: key);
 
@@ -228,9 +232,9 @@ class _CustomTextField3State extends State<CustomTextField3> {
           obscureText: widget.isIcon ? _isObscure : false,
           maxLines: widget.maxLines,
           style: TextStyle(
-            color: kPrimaryColor,
-            fontSize: f(context, 15),
-          ),
+              color: kPrimaryColor,
+              fontSize: f(context, widget.size ?? 18),
+              fontWeight: FontWeight.w400),
           decoration: InputDecoration(
             enabledBorder: UnderlineInputBorder(
               borderSide: BorderSide(color: kGreyColor),
@@ -241,15 +245,20 @@ class _CustomTextField3State extends State<CustomTextField3> {
             border: InputBorder.none,
             hintText: widget.hintText,
             hintStyle: TextStyle(
-              color: Color(0xffBDBDBD),
-              fontSize: f(context, 15),
-              fontWeight: FontWeight.w500,
-            ),
+                color: Color(0xffBDBDBD),
+                fontSize: f(context, widget.size ?? 18),
+                fontWeight: FontWeight.w400),
             suffixIcon: widget.isIcon
                 ? IconButton(
-                    icon: Icon(
-                      _isObscure ? Icons.visibility_off : Icons.visibility,
-                    ),
+                    icon: _isObscure
+                        ? ImageIcon(
+                            AssetImage(Assets.iconsEye),
+                            color: kGreyColor,
+                          )
+                        : Icon(
+                            Icons.visibility_outlined,
+                            color: kGreyColor,
+                          ),
                     iconSize: 18,
                     onPressed: () {
                       setState(() {

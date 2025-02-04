@@ -1,15 +1,16 @@
 // ignore_for_file: prefer_const_constructors, library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:minimandi/constants/app_colors.dart';
 import 'package:minimandi/constants/app_styling.dart';
+import 'package:minimandi/controller/cart_controller.dart';
+import 'package:minimandi/controller/favourite_controller.dart';
 import 'package:minimandi/models/product_model.dart';
 import 'package:minimandi/view/screens/productdetailed/widget/review_widget.dart';
 import 'package:minimandi/view/widget/Custom_Appbar_widget.dart';
 import 'package:minimandi/view/widget/Custom_button_widget.dart';
 import 'package:minimandi/view/widget/Custom_text_widget.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'dart:convert';
 
 class ProductdetailedWidget extends StatefulWidget {
   final Product product;
@@ -23,81 +24,9 @@ class ProductdetailedWidget extends StatefulWidget {
 
 class _ProductdetailedWidgetState extends State<ProductdetailedWidget> {
   int quantity = 1;
-  bool isFavorite = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _loadFavoriteStatus();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
-  Future<void> _loadFavoriteStatus() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    List<String> favorites = prefs.getStringList('favorites') ?? [];
-    String productJson = jsonEncode({
-      'title': widget.product.title,
-      'image': widget.product.image,
-      'weight': widget.product.weight,
-      'price': widget.product.amount,
-    });
-    setState(() {
-      isFavorite = favorites.contains(productJson);
-    });
-  }
-
-  Future<void> _toggleFavorite() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    List<String> favorites = prefs.getStringList('favorites') ?? [];
-
-    String productJson = jsonEncode({
-      'title': widget.product.title,
-      'image': widget.product.image,
-      'weight': widget.product.weight,
-      'price': widget.product.amount,
-    });
-
-    if (favorites.contains(productJson)) {
-      favorites.remove(productJson);
-      setState(() {
-        isFavorite = false;
-      });
-    } else {
-      favorites.add(productJson);
-      setState(() {
-        isFavorite = true;
-      });
-    }
-
-    await prefs.setStringList('favorites', favorites);
-
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(isFavorite
-            ? '${widget.product.title} added to favorites!'
-            : '${widget.product.title} removed from favorites!'),
-      ),
-    );
-  }
-
-  Future<void> _addToCart() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    List<String> cartItems = prefs.getStringList('cartItems') ?? [];
-    String cartItem =
-        '${widget.product.title}|$quantity|${widget.product.amount * quantity}|${widget.product.image}|${widget.product.weight}';
-    cartItems.add(cartItem);
-
-    await prefs.setStringList('cartItems', cartItems);
-
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('${widget.product.title} added to cart!')),
-    );
-  }
+  final CartController cartController = Get.find();
+  final FavoriteController favoriteController = Get.find();
+  final PageController _pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
@@ -129,9 +58,20 @@ class _ProductdetailedWidgetState extends State<ProductdetailedWidget> {
           bottomLeft: Radius.circular(30),
           bottomRight: Radius.circular(30),
         ),
-        image: DecorationImage(
-          image: AssetImage(product.image ?? 'assets/default_image.png'),
-          fit: BoxFit.cover,
+      ),
+      child: SizedBox(
+        height: h(context, 199.18),
+        width: w(context, 329.34),
+        child: PageView.builder(
+          itemCount: 3,
+          itemBuilder: (context, index) {
+            return Image(
+              image: AssetImage(
+                product.image ?? 'assets/default_image.png',
+              ),
+              fit: BoxFit.contain,
+            );
+          },
         ),
       ),
     );
@@ -146,29 +86,46 @@ class _ProductdetailedWidgetState extends State<ProductdetailedWidget> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 8),
+              SizedBox(
+                height: h(context, 17),
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   CustomText(
                     text: product.title,
-                    size: f(context, 24),
-                    weight: FontWeight.w600,
+                    size: 24,
+                    weight: FontWeight.w500,
                     color: kPrimaryColor,
                   ),
-                  IconButton(
-                    icon: Icon(
-                      isFavorite ? Icons.favorite : Icons.favorite_border_sharp,
-                      color: isFavorite ? Colors.red : kGreyColor,
-                    ),
-                    onPressed: _toggleFavorite,
-                  ),
+                  Obx(() {
+                    bool isFavorite = favoriteController.favoriteProducts
+                        .any((item) => item['id'] == product.id);
+
+                    return IconButton(
+                      icon: Icon(
+                        isFavorite
+                            ? Icons.favorite
+                            : Icons.favorite_border_sharp,
+                        color: isFavorite ? Colors.red : kGreyColor,
+                      ),
+                      onPressed: () async {
+                        await favoriteController.toggleFavorite({
+                          'id': widget.product.id,
+                          'title': widget.product.title,
+                          'image': widget.product.image,
+                          'amount': widget.product.amount,
+                          'weight': widget.product.weight,
+                        }, context);
+                      },
+                    );
+                  }),
                 ],
               ),
               CustomText(
                 text: product.weight,
-                size: f(context, 17),
-                weight: FontWeight.w600,
+                size: 18,
+                weight: FontWeight.w300,
                 color: kGreyColor,
               ),
               SizedBox(height: 10),
@@ -233,9 +190,9 @@ class _ProductdetailedWidgetState extends State<ProductdetailedWidget> {
                   ),
                   CustomText(
                     text: '\$${(product.amount * quantity).toStringAsFixed(2)}',
-                    size: f(context, 20),
+                    size: 26,
                     color: kPrimaryColor,
-                    weight: FontWeight.bold,
+                    weight: FontWeight.w600,
                   ),
                 ],
               ),
@@ -246,9 +203,9 @@ class _ProductdetailedWidgetState extends State<ProductdetailedWidget> {
                 children: [
                   CustomText(
                     text: 'Product Details',
-                    size: f(context, 16),
+                    size: 18,
                     color: kPrimaryColor,
-                    weight: FontWeight.bold,
+                    weight: FontWeight.w500,
                   ),
                   Icon(
                     Icons.keyboard_arrow_down_outlined,
@@ -260,9 +217,9 @@ class _ProductdetailedWidgetState extends State<ProductdetailedWidget> {
               CustomText(
                 text: product.description,
                 textAlign: TextAlign.start,
-                size: f(context, 12),
+                size: 14,
                 color: Colors.grey,
-                weight: FontWeight.bold,
+                weight: FontWeight.w300,
               ),
               SizedBox(height: h(context, 8)),
               Divider(),
@@ -271,9 +228,9 @@ class _ProductdetailedWidgetState extends State<ProductdetailedWidget> {
                   Expanded(
                     child: CustomText(
                       text: 'Nutritions',
-                      size: f(context, 16),
+                      size: 18,
                       color: kPrimaryColor,
-                      weight: FontWeight.bold,
+                      weight: FontWeight.w500,
                     ),
                   ),
                   Row(
@@ -304,16 +261,16 @@ class _ProductdetailedWidgetState extends State<ProductdetailedWidget> {
                   Expanded(
                     child: CustomText(
                       text: 'Reviews',
-                      size: f(context, 16),
+                      size: 18,
                       color: kPrimaryColor,
-                      weight: FontWeight.bold,
+                      weight: FontWeight.w500,
                     ),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       RatingBarExample(),
-                      SizedBox(width: 5),
+                      SizedBox(width: w(context, 5)),
                       Icon(
                         Icons.arrow_forward_ios,
                         color: kPrimaryColor,
@@ -327,12 +284,23 @@ class _ProductdetailedWidgetState extends State<ProductdetailedWidget> {
         ),
         SizedBox(height: h(context, 30)),
         CustomButton(
-          width: 400,
-          height: 60,
+          borderRadius: 20.0,
+          width: 364,
+          height: 67,
           buttonText: 'Add to Cart',
-          onTap: _addToCart,
+          onTap: () {
+            cartController.addProductToCart(
+              context,
+              product.id,
+              product.title,
+              product.amount,
+              product.image ?? '',
+              product.weight,
+            );
+          },
           backgroundColor: kBlueColor,
-          textSize: f(context, 18),
+          fontWeight: FontWeight.w500,
+          textSize: 18,
         ),
         SizedBox(
           height: h(context, 20),

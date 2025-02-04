@@ -7,7 +7,7 @@ class ProductController extends GetxController {
   final List<Product> productData = [
     Product(
         weight: '1kg, Red',
-        image: Assets.apple,
+        image: Assets.imagesApple,
         title: 'Apple',
         amount: 4.9,
         category: 'a1',
@@ -15,7 +15,7 @@ class ProductController extends GetxController {
         description: 'good'),
     Product(
         weight: '12pcs, Organic',
-        image: Assets.banana,
+        image: Assets.imagesBanana,
         title: 'Banana',
         amount: 2.6,
         category: 'a1',
@@ -23,7 +23,7 @@ class ProductController extends GetxController {
         description: 'good'),
     Product(
         weight: '1kg, Shimla',
-        image: Assets.redMirch,
+        image: Assets.imagesRedMirch,
         title: 'Red Mirch',
         amount: 3.0,
         category: 'a1',
@@ -31,7 +31,7 @@ class ProductController extends GetxController {
         description: 'good'),
     Product(
         weight: '250gm, Organic',
-        image: Assets.ginger,
+        image: Assets.imagesGinger,
         title: 'Ginger',
         amount: 1.06,
         category: 'a1',
@@ -39,7 +39,7 @@ class ProductController extends GetxController {
         description: 'good'),
     Product(
         weight: '1kg, Fresh',
-        image: Assets.beefBone,
+        image: Assets.imagesBeefBone,
         title: 'Beef Bone',
         amount: 2.1,
         category: 'c1',
@@ -47,7 +47,7 @@ class ProductController extends GetxController {
         description: 'good'),
     Product(
         weight: '1kg, Broiler',
-        image: Assets.chicken,
+        image: Assets.imagesChicken,
         title: 'Chicken',
         amount: 2.9,
         category: 'c1',
@@ -55,7 +55,7 @@ class ProductController extends GetxController {
         description: 'good'),
     Product(
         weight: '30gm, Flavoured',
-        image: Assets.eggPasta,
+        image: Assets.imagesEggPasta,
         title: 'Egg Pasta',
         amount: 4.35,
         category: 'd1',
@@ -63,7 +63,7 @@ class ProductController extends GetxController {
         description: 'good'),
     Product(
         weight: '50gm, Flavoured',
-        image: Assets.eggNoodles,
+        image: Assets.imagesEggNoodles,
         title: 'Egg Noodles',
         amount: 7.49,
         category: 'd1',
@@ -71,7 +71,7 @@ class ProductController extends GetxController {
         description: 'good'),
     Product(
         weight: '50gm, Added Flavour',
-        image: Assets.eggNoodles2,
+        image: Assets.imagesEggNoodles2,
         title: 'Egg Noodles',
         amount: 1.39,
         category: 'd1',
@@ -79,7 +79,7 @@ class ProductController extends GetxController {
         description: 'good'),
     Product(
         weight: '4pcs, Organic',
-        image: Assets.eggsChickenRed,
+        image: Assets.imagesEggsChickenRed,
         title: 'Eggs Chicken Red',
         amount: 1.99,
         category: 'e1',
@@ -87,7 +87,7 @@ class ProductController extends GetxController {
         description: 'good'),
     Product(
         weight: '4pcs, Farmed',
-        image: Assets.layersWhiteegg,
+        image: Assets.imagesLayersWhiteegg,
         title: 'Layers White egg',
         amount: 1.79,
         category: 'e1',
@@ -95,7 +95,7 @@ class ProductController extends GetxController {
         description: 'good'),
     Product(
         weight: '335ml,Diet',
-        image: Assets.coke,
+        image: Assets.imagesCoke,
         title: 'Coke',
         amount: 1.99,
         category: 'f1',
@@ -103,7 +103,7 @@ class ProductController extends GetxController {
         description: 'good'),
     Product(
         weight: '330gm, Flavoured',
-        image: Assets.sprite,
+        image: Assets.imagesSprite,
         title: 'Sprite',
         amount: 1.79,
         category: 'f1',
@@ -111,7 +111,7 @@ class ProductController extends GetxController {
         description: 'good'),
     Product(
         weight: '2L, Fresh',
-        image: Assets.appleJuice,
+        image: Assets.imagesAppleJuice,
         title: 'Apple Juice',
         amount: 15.59,
         category: 'f1',
@@ -119,7 +119,7 @@ class ProductController extends GetxController {
         description: 'good'),
     Product(
         weight: '2L, Fresh',
-        image: Assets.orangeJuice,
+        image: Assets.imagesOrangeJuice,
         title: 'Orange Juice',
         amount: 13.49,
         category: 'f1',
@@ -127,7 +127,7 @@ class ProductController extends GetxController {
         description: 'good'),
     Product(
         weight: '250ml, Flavoured',
-        image: Assets.pepsi,
+        image: Assets.imagesPepsi,
         title: 'Pepsi',
         amount: 1.69,
         category: 'f1',
@@ -135,7 +135,7 @@ class ProductController extends GetxController {
         description: 'good'),
     Product(
         weight: '250ml, Origonal',
-        image: Assets.cocaCola,
+        image: Assets.imagesCocaCola,
         title: 'Coca Cola',
         amount: 1.69,
         category: 'f1',
@@ -143,7 +143,7 @@ class ProductController extends GetxController {
         description: 'good'),
     Product(
         weight: '1kg, Red',
-        image: Assets.apple,
+        image: Assets.imagesApple,
         title: 'Apple',
         amount: 4.9,
         category: 'Exclusive Offer',
@@ -151,7 +151,7 @@ class ProductController extends GetxController {
         description: 'good'),
     Product(
         weight: '12pcs, Organic',
-        image: Assets.banana,
+        image: Assets.imagesBanana,
         title: 'Banana',
         amount: 2.6,
         category: 'Exclusive Offer',
@@ -159,7 +159,7 @@ class ProductController extends GetxController {
         description: 'good'),
     Product(
         weight: '1kg, Shimla',
-        image: Assets.redMirch,
+        image: Assets.imagesRedMirch,
         title: 'Red Mirch',
         amount: 3.0,
         category: 'Best Selling',
@@ -167,7 +167,7 @@ class ProductController extends GetxController {
         description: 'good'),
     Product(
         weight: '250gm, Organic',
-        image: Assets.ginger,
+        image: Assets.imagesGinger,
         title: 'Ginger',
         amount: 1.06,
         category: 'Best Selling',
@@ -175,7 +175,7 @@ class ProductController extends GetxController {
         description: 'good'),
     Product(
         weight: '1kg, Fresh',
-        image: Assets.beefBone,
+        image: Assets.imagesBeefBone,
         title: 'Beef Bone',
         amount: 2.1,
         category: 'Groceries',
@@ -183,7 +183,7 @@ class ProductController extends GetxController {
         description: 'good'),
     Product(
         weight: '1kg, Broiler',
-        image: Assets.chicken,
+        image: Assets.imagesChicken,
         title: 'Chicken',
         amount: 2.9,
         category: 'Groceries',

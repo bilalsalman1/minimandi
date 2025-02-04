@@ -6,7 +6,7 @@ import 'package:minimandi/constants/app_colors.dart';
 import 'package:minimandi/constants/app_styling.dart';
 import 'package:minimandi/controller/product_controller.dart';
 import 'package:minimandi/models/explore_model.dart';
-import 'package:minimandi/view/screens/explore/widget/explore_widget.dart';
+import 'package:minimandi/view/screens/explore/widget/custom_card_widget.dart';
 import 'package:minimandi/view/screens/product/product_screen.dart';
 import 'package:minimandi/view/widget/Custom_text_widget.dart';
 import 'package:minimandi/view/widget/custom_search_bar_widget.dart';
@@ -96,8 +96,8 @@ class ExploreScreen extends StatelessWidget {
           child: CustomText(
             text: 'Find Products',
             color: kPrimaryColor,
-            weight: FontWeight.bold,
-            size: f(context, 23),
+            weight: FontWeight.w500,
+            size: 20,
           ),
         ),
         CustomSearchBar2(
@@ -122,7 +122,7 @@ class ExploreScreen extends StatelessWidget {
           itemCount: categoriesData.length,
           itemBuilder: (context, index) {
             final category = categoriesData[index];
-            return ExploreWidget(
+            return CustomCardWidget(
               category: category,
               onSelect: () {
                 onSelect(context, category);

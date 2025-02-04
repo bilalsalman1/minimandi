@@ -2,8 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:minimandi/constants/app_colors.dart';
+import 'package:minimandi/constants/app_images.dart';
 import 'package:minimandi/constants/app_styling.dart';
-import 'package:minimandi/view/screens/account/widget/account_widget.dart';
+import 'package:minimandi/view/screens/account/widget/custom_account_widget.dart';
 import 'package:minimandi/view/widget/Custom_button_widget.dart';
 import 'package:minimandi/view/widget/Custom_text_widget.dart';
 
@@ -20,107 +21,146 @@ class AccountScreen extends StatelessWidget {
 }
 
 Widget _buildBody(BuildContext context) {
-  return Column(
-    children: [
-      SizedBox(
-        height: h(context, 70),
-      ),
-      AccountWidget(),
-      SizedBox(
-        height: h(context, 20),
-      ),
-      AccountTile(
-          icons: Icons.shopping_bag_outlined,
-          ontap: () {},
-          text: CustomText(
-            text: 'Orders',
-            weight: FontWeight.bold,
-            color: kblueColor,
-            size: f(context, 16),
-          )),
-      AccountTile(
-          icons: Icons.shopping_bag_outlined,
-          ontap: () {},
-          text: CustomText(
-            text: 'My Details',
-            weight: FontWeight.bold,
-            color: kblueColor,
-            size: f(context, 16),
-          )),
-      AccountTile(
-          icons: Icons.location_on_outlined,
-          ontap: () {},
-          text: CustomText(
-            text: 'Delivery Address',
-            weight: FontWeight.bold,
-            color: kblueColor,
-            size: f(context, 16),
-          )),
-      AccountTile(
-          icons: Icons.payment_outlined,
-          ontap: () {},
-          text: CustomText(
-            text: 'Payment Methods',
-            weight: FontWeight.bold,
-            color: kblueColor,
-            size: f(context, 16),
-          )),
-      AccountTile(
-          icons: Icons.payment_outlined,
-          ontap: () {},
-          text: CustomText(
-            text: 'Promo Code',
-            weight: FontWeight.bold,
-            color: kblueColor,
-            size: f(context, 16),
-          )),
-      AccountTile(
-          icons: Icons.notification_important_outlined,
-          ontap: () {},
-          text: CustomText(
-            text: 'Notifecations ',
-            weight: FontWeight.bold,
-            color: kblueColor,
-            size: f(context, 16),
-          )),
-      AccountTile(
-          icons: Icons.help_outline_rounded,
-          ontap: () {},
-          text: CustomText(
-            text: 'Help',
-            weight: FontWeight.bold,
-            color: kblueColor,
-            size: f(context, 16),
-          )),
-      AccountTile(
-          icons: Icons.help_outline_rounded,
-          ontap: () {},
-          text: CustomText(
-            text: 'About',
-            weight: FontWeight.bold,
-            color: kblueColor,
-            size: f(context, 16),
-          )),
-      Divider(
-        color: kGreyColor,
-        thickness: 0.5,
-        height: 0.5,
-      ),
-      SizedBox(
-        height: h(context, 24),
-      ),
-      CustomButton2(
-        text: 'Logout',
-        textColor: kBlueColor,
-        onTap: () {},
-        borderColor: kBlueColor,
-        backgroundColor: kSecondaryColor,
-        icons: Icons.logout,
-        iconColor: kAlertColor,
-        iconSize: f(context, 17),
-        textSize: f(context, 22),
-        fontWeight: FontWeight.bold,
-      ),
-    ],
+  return SingleChildScrollView(
+    child: Column(
+      children: [
+        SizedBox(
+          height: h(context, 70),
+        ),
+        AccountWidget(),
+        SizedBox(
+          height: h(context, 20),
+        ),
+        AccountTile(
+            icon: ImageIcon(
+              AssetImage(Assets.iconsOrders),
+              size: 22,
+              color: kblueColor,
+            ),
+            ontap: () {},
+            text: CustomText(
+              text: 'Orders',
+              weight: FontWeight.w500,
+              color: kblueColor,
+              size: 16,
+            )),
+        AccountTile(
+            icon: ImageIcon(
+              AssetImage(Assets.iconsDetails),
+              size: 22,
+              color: kblueColor,
+            ),
+            ontap: () {},
+            text: CustomText(
+              text: 'My Details',
+              weight: FontWeight.w500,
+              color: kblueColor,
+              size: 16,
+            )),
+        AccountTile(
+            icon: ImageIcon(
+              AssetImage(Assets.iconsDelivery),
+              size: 22,
+              color: kblueColor,
+            ),
+            ontap: () {},
+            text: CustomText(
+              text: 'Delivery Address',
+              weight: FontWeight.w500,
+              color: kblueColor,
+              size: 16,
+            )),
+        AccountTile(
+            icon: ImageIcon(
+              AssetImage(Assets.iconsPayment),
+              size: 22,
+              color: kblueColor,
+            ),
+            ontap: () {},
+            text: CustomText(
+              text: 'Payment Methods',
+              weight: FontWeight.w500,
+              color: kblueColor,
+              size: 16,
+            )),
+        AccountTile(
+            icon: ImageIcon(
+              AssetImage(Assets.iconsPromo),
+              size: 22,
+              color: kblueColor,
+            ),
+            ontap: () {},
+            text: CustomText(
+              text: 'Promo Code',
+              weight: FontWeight.w500,
+              color: kblueColor,
+              size: 16,
+            )),
+        AccountTile(
+            icon: ImageIcon(
+              AssetImage(Assets.iconsBell),
+              size: 22,
+              color: kblueColor,
+            ),
+            ontap: () {},
+            text: CustomText(
+              text: 'Notifecations',
+              weight: FontWeight.w500,
+              color: kblueColor,
+              size: 16,
+            )),
+        AccountTile(
+            icon: ImageIcon(
+              AssetImage(Assets.iconsHelp),
+              size: 22,
+              color: kblueColor,
+            ),
+            ontap: () {},
+            text: CustomText(
+              text: 'Help',
+              weight: FontWeight.w500,
+              color: kblueColor,
+              size: 16,
+            )),
+        AccountTile(
+            icon: ImageIcon(
+              AssetImage(Assets.iconsAbout),
+              size: 22,
+              color: kblueColor,
+            ),
+            ontap: () {},
+            text: CustomText(
+              text: 'About',
+              weight: FontWeight.w500,
+              color: kblueColor,
+              size: 16,
+            )),
+        Divider(
+          color: kGreyColor,
+          thickness: 0.5,
+          height: 0.5,
+        ),
+        SizedBox(
+          height: h(context, 24),
+        ),
+        Padding(
+          padding: only(context, bottom: 20),
+          child: CustomButton2(
+            height: 67,
+            text: 'Logout',
+            width: 364,
+            textColor: kBlueColor,
+            onTap: () {},
+            borderColor: kBlueColor,
+            backgroundColor: kSecondaryColor,
+            icons: Icons.logout,
+            iconColor: kAlertColor,
+            iconSize: 20,
+            textSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ],
+    ),
   );
 }

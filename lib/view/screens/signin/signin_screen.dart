@@ -31,9 +31,9 @@ Widget _buildBody(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         CommonImageView(
-          imagePath: Assets.signin,
-          width: h(context, double.infinity),
-          height: h(context, 380),
+          imagePath: Assets.imagesSignin,
+          width: h(context, 430),
+          height: h(context, 422),
         ),
         Padding(
           padding: only(
@@ -44,14 +44,14 @@ Widget _buildBody(
           child: CustomText(
               text: 'Get your groceries \nwith Mini Mandi',
               color: kPrimaryColor,
-              size: f(context, 20),
-              weight: FontWeight.bold),
+              size: 24,
+              weight: FontWeight.w500),
         ),
         SizedBox(
-          height: h(context, 25),
+          height: h(context, 6),
         ),
         Padding(
-          padding: only(context, left: 20, right: 20),
+          padding: only(context, left: 5, right: 15),
           child: Row(
             children: [
               CountryCodePicker(
@@ -61,30 +61,36 @@ Widget _buildBody(
                 showCountryOnly: false,
               ),
               Expanded(
-                  child: CustomTextField(
-                keyboardType: TextInputType.number,
+                  child: Padding(
+                padding: only(context, right: 20),
+                child: CustomTextField(
+                  keyboardType: TextInputType.number,
+                ),
               )),
             ],
           ),
         ),
         SizedBox(
-          height: h(context, 8),
+          height: h(context, 15),
         ),
         Center(
           child: CustomText(
               text: 'Or',
               color: kGreyColor,
-              size: f(context, 16),
-              weight: FontWeight.bold),
+              size: 18,
+              weight: FontWeight.normal),
         ),
         SizedBox(
-          height: h(context, 10),
+          height: h(context, 15),
         ),
         CustomButton3(
-          width: 400,
-          height: 60,
+          borderRadius: 20.0,
+          imagePath: Assets.iconsGoogle,
+          width: 364,
+          height: 67,
           buttonText: 'Continue with Google',
-          textSize: f(context, 18),
+          fontWeight: FontWeight.normal,
+          textSize: 18,
           onTap: () {
             Get.toNamed(AppLinks.number);
           },
@@ -92,13 +98,16 @@ Widget _buildBody(
           backgroundColor: kBlueLightColor,
         ),
         SizedBox(
-          height: h(context, 10),
+          height: h(context, 13),
         ),
         CustomButton3(
-          width: 400,
-          height: 60,
+          borderRadius: 20.0,
+          imagePath: Assets.iconsApple,
+          width: 364,
+          height: 67,
+          fontWeight: FontWeight.normal,
           buttonText: 'Continue with Apple',
-          textSize: f(context, 18),
+          textSize: 18,
           onTap: () {
             Get.toNamed(AppLinks.number);
           },

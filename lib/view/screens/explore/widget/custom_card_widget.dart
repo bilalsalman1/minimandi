@@ -6,10 +6,10 @@ import 'package:minimandi/constants/app_styling.dart';
 import 'package:minimandi/models/explore_model.dart';
 import 'package:minimandi/view/widget/Custom_text_widget.dart';
 
-class ExploreWidget extends StatelessWidget {
+class CustomCardWidget extends StatelessWidget {
   final Category category;
   final void Function() onSelect;
-  const ExploreWidget(
+  const CustomCardWidget(
       {super.key, required this.category, required this.onSelect});
 
   @override
@@ -37,8 +37,8 @@ class ExploreWidget extends StatelessWidget {
               textAlign: TextAlign.center,
               text: category.name,
               color: kPrimaryColor,
-              size: f(context, 16),
-              weight: FontWeight.w700,
+              size: 16,
+              weight: FontWeight.w500,
             ),
             SizedBox(
               height: h(context, 8),

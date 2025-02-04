@@ -30,16 +30,14 @@ Widget _buildBody(BuildContext context) {
     decoration: BoxDecoration(
       image: DecorationImage(
         fit: BoxFit.cover,
-        image: AssetImage(
-          Assets.accept,
-        ),
+        image: AssetImage(Assets.imagesAccepted),
       ),
     ),
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         CommonImageView(
-          imagePath: Assets.accept2,
+          imagePath: Assets.imagesAccepted2,
           height: h(context, 150),
           width: w(context, 200),
         ),

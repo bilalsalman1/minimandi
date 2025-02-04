@@ -39,14 +39,14 @@ class VerificationScreen extends StatelessWidget {
             ),
             Positioned(
               bottom: 10,
-              right: 200,
+              right: w(context, 240),
               child: CustomTextButtonWidget(
                 onPressed: () {},
                 text: 'Resend code',
                 textAlign: TextAlign.start,
                 color: kBlueColor,
-                size: f(context, 16),
-                weight: FontWeight.w900,
+                size: 14,
+                weight: FontWeight.w500,
               ),
             ),
           ],
@@ -58,7 +58,7 @@ Widget _buildHeader(BuildContext context) {
   return Stack(
     children: [
       CommonImageView(
-        imagePath: Assets.background,
+        imagePath: Assets.imagesBackground,
         height: h(context, 250),
         width: w(context, double.infinity),
       ),
@@ -81,13 +81,13 @@ Widget _buildHeader(BuildContext context) {
                 },
                 icon: Icon(Icons.arrow_back_ios)),
             SizedBox(
-              height: h(context, 40),
+              height: h(context, 55),
             ),
             CustomText(
               text: 'Enter your 4 digit code',
               color: kPrimaryColor,
-              size: f(context, 20),
-              weight: FontWeight.bold,
+              size: 24,
+              weight: FontWeight.w500,
             ),
             SizedBox(
               height: h(context, 25),
@@ -95,7 +95,7 @@ Widget _buildHeader(BuildContext context) {
             CustomText(
               text: 'code',
               color: kGreyColor,
-              size: f(context, 13),
+              size: 13,
               weight: FontWeight.w300,
             ),
             Row(

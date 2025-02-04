@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:minimandi/constants/app_colors.dart';
+import 'package:minimandi/constants/app_images.dart';
+import 'package:minimandi/constants/app_styling.dart';
 import 'package:minimandi/view/screens/account/account_screen.dart';
 import 'package:minimandi/view/screens/cart/cart_screen.dart';
 import 'package:minimandi/view/screens/favourite/favourite_screen.dart';
@@ -31,9 +33,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
     Home(),
     ExploreScreen(),
     CartScreen(),
-    FavouriteScreen(
-      products: [],
-    ),
+    FavouriteScreen(),
     const AccountScreen()
   ];
 
@@ -46,34 +46,50 @@ class _BottomNavigationState extends State<BottomNavigation> {
       ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(25), topRight: Radius.circular(25)),
-            boxShadow: [
-              BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 20)
-            ]),
-        child: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          backgroundColor: kSecondaryColor,
-          selectedItemColor: kBlueColor,
-          unselectedItemColor: kGreyColor,
-          onTap: (index) {
-            setState(() {
-              currentindex = index;
-            });
-          },
-          currentIndex: currentindex,
-          items: const [
-            BottomNavigationBarItem(
-                icon: Icon(Icons.store_outlined), label: "Shop"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.search_sharp), label: "Explore"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.shopping_cart_outlined), label: "Cart"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.favorite_border_outlined), label: "Favourite"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.person_2_outlined), label: "Account"),
+          borderRadius: BorderRadius.circular(18),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              blurRadius: 20,
+              offset: Offset(0, -2),
+            ),
           ],
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(15),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              BottomNavigationBar(
+                type: BottomNavigationBarType.fixed,
+                backgroundColor: kSecondaryColor,
+                selectedItemColor: kBlueColor,
+                unselectedItemColor: kGreyColor,
+                onTap: (index) {
+                  setState(() {
+                    currentindex = index;
+                  });
+                },
+                currentIndex: currentindex,
+                items: const [
+                  BottomNavigationBarItem(
+                      icon: ImageIcon(AssetImage(Assets.iconsShop)),
+                      label: "Shop"),
+                  BottomNavigationBarItem(
+                      icon: ImageIcon(AssetImage(Assets.iconsExplore)),
+                      label: "Explore"),
+                  BottomNavigationBarItem(
+                      icon: ImageIcon(AssetImage(Assets.iconsCart)),
+                      label: "Cart"),
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.favorite_border_outlined),
+                      label: "Favourite"),
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.person_2_outlined), label: "Account"),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
